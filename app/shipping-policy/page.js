@@ -1,0 +1,12 @@
+import PolicyPage from "@/components/PolicyPage";
+
+export const metadata = { title: "Shipping policy", description: "Delivery, shipping and international freight information for WE DECOR 4U orders." };
+
+export default function ShippingPolicyPage() {
+  return <PolicyPage title="Shipping policy" intro="Delivery options and charges depend on the destination, product, dimensions and shipping method. The checkout quote or signed project proposal is the source for an order’s confirmed delivery terms." sections={[
+    { title: "Domestic delivery", paragraphs: ["Standard doorstep delivery is offered where available. Any delivery estimate and charge are shown in the checkout quote or written order confirmation.", "Delivery to upper floors, restricted-access sites or locations requiring additional handling may need extra arrangements. Any additional stair, floor or handling charge must be confirmed before dispatch."] },
+    { title: "International freight", paragraphs: ["Air freight is typically estimated at 7–14 business days and ocean freight at 30–60 business days. These are indicative ranges, not guaranteed delivery dates. Customs processing, carrier capacity and destination access can affect transit time."], items: ["The available freight method and price depend on country, product weight and dimensions.", "Import duties, VAT, customs fees and local charges depend on the destination and may be payable by the recipient.", "DDU means duties and taxes are unpaid at delivery and may be charged to the recipient. DDP means duties and taxes are prepaid only where the written quote expressly confirms it.", "Customs inspections, documentation requests and clearance delays are outside the delivery estimate."] },
+    { title: "Delivery and handover", paragraphs: ["Keep the delivery address and recipient details accurate. Delivery, installation and on-site access are included only where stated in the order confirmation or signed project proposal.", "The customer or site representative should inspect the consignment at handover and note visible transit damage or missing packages on the carrier’s delivery record where possible."] },
+    { title: "Shipping configuration", paragraphs: ["Destination tax, currency conversion and shipping prices are calculated from store configuration. If checkout cannot provide a configured rate, the order cannot be paid online until a written quote is issued."] },
+  ]} />;
+}
