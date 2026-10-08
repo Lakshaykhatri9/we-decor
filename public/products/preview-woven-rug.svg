@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 900" role="img" aria-labelledby="title desc">
+  <title id="title">Nami woven rug concept illustration</title><desc id="desc">A natural woven rug with a subtle grid and fringed edges.</desc>
+  <defs><linearGradient id="wall" x2="0" y2="1"><stop stop-color="#f0ece2"/><stop offset="1" stop-color="#d8d1c3"/></linearGradient><linearGradient id="rug" x2="1" y2="1"><stop stop-color="#d9c9aa"/><stop offset="1" stop-color="#a9916e"/></linearGradient><filter id="blur"><feGaussianBlur stdDeviation="14"/></filter></defs>
+  <rect width="800" height="900" fill="url(#wall)"/><path d="M93 665h614v210H93z" fill="#c4b9a2" opacity=".28"/><ellipse cx="407" cy="717" rx="232" ry="42" fill="#453a2e" opacity=".14" filter="url(#blur)"/>
+  <path d="M252 263l309 35 15 354-314-36z" fill="url(#rug)" stroke="#9c8767" stroke-width="8"/><path d="M277 290l262 30 12 301-266-31z" fill="none" stroke="#eee3cd" stroke-width="5" opacity=".76"/><path d="M300 307l12 307m48-301 11 313m50-306 11 317m50-311 10 322m50-315 10 327M268 355l286 32m-284 47 286 32m-284 47 289 32m-287 47 289 32m-287 47 290 33" fill="none" stroke="#8f795a" stroke-width="3" opacity=".45"/><path d="M251 278l-14-2m18 28-15-2m18 28-15-2m18 28-15-2m18 28-15-2m18 28-15-2m18 28-15-2m18 28-15-2m18 28-15-2m18 28-15-2m18 28-15-2m18 28-15-2" stroke="#ad9877" stroke-width="5"/>
+  <text x="400" y="858" text-anchor="middle" fill="#6d705f" font-family="Arial,sans-serif" font-size="18" letter-spacing="5">TEXTILE CONCEPT</text>
+</svg>

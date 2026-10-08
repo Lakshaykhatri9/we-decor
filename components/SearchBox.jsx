@@ -49,8 +49,8 @@ export default function SearchBox({ onChoose }) {
       {state === "error" && <p className="search-note">Search is unavailable right now. Please try again.</p>}
       {state === "results" && products.map((product) => <Link className="search-result" href={`/product/${product.slug}`} key={product.id} onClick={() => { setOpen(false); onChoose?.(); }}>
         {product.mainImage ? <img src={product.mainImage} alt="" /> : <span className="search-placeholder">WD</span>}
-        <span><strong>{product.name}</strong><small>{product.category} · {product.stock > 0 ? "Available" : "Out of stock"}</small></span>
-        <b>{formatBasePrice(product.priceInrPaise, moneyConfig).text}</b>
+        <span><strong>{product.name}</strong><small>{product.category} · {product.previewOnly ? "Concept preview" : product.stock > 0 ? "Available" : "Out of stock"}</small></span>
+        <b>{product.previewOnly ? "Price TBC" : formatBasePrice(product.priceInrPaise, moneyConfig).text}</b>
       </Link>)}
     </div>}
   </div>;

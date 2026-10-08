@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 900" role="img" aria-labelledby="title desc">
+  <title id="title">Mira ceramic vessel concept illustration</title><desc id="desc">A sculptural sand-colored ceramic vessel with delicate branches.</desc>
+  <defs><linearGradient id="wall" x2="0" y2="1"><stop stop-color="#f1ede4"/><stop offset="1" stop-color="#d9d1c2"/></linearGradient><linearGradient id="pot" x2=".8" y2="1"><stop stop-color="#e6d9c3"/><stop offset="1" stop-color="#ad9679"/></linearGradient><filter id="blur"><feGaussianBlur stdDeviation="18"/></filter></defs>
+  <rect width="800" height="900" fill="url(#wall)"/><circle cx="600" cy="240" r="135" fill="#e6dece"/><ellipse cx="400" cy="735" rx="176" ry="28" fill="#534b3f" opacity=".17" filter="url(#blur)"/><path d="M198 710h404v19H198z" fill="#8f7559"/>
+  <path d="M319 697c5-83 14-136 33-174 18-35 22-62 17-92h62c-5 30-1 57 17 92 19 38 28 91 33 174-47 44-115 44-162 0z" fill="url(#pot)"/><ellipse cx="400" cy="430" rx="31" ry="9" fill="#9b856c"/><path d="M369 470c20 12 42 12 62 0m-92 67c40 18 82 18 122 0m-129 72c45 21 91 21 136 0" fill="none" stroke="#9d876c" stroke-width="5" opacity=".6"/>
+  <path d="M400 427c-7-83-39-135-98-179m99 180c3-84 31-146 89-200m-88 200c-22-68-18-123 6-173" fill="none" stroke="#6d795e" stroke-width="6" stroke-linecap="round"/><path d="M302 248l-42-21m74-4-10-43m132 17 40-28m-48 77 44 8m-126-70-39-32" stroke="#82906b" stroke-width="7" stroke-linecap="round"/>
+  <text x="400" y="858" text-anchor="middle" fill="#6d705f" font-family="Arial,sans-serif" font-size="18" letter-spacing="5">DECOR CONCEPT</text>
+</svg>

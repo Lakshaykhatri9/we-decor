@@ -13,6 +13,7 @@ export default function ProductCard({ product }) {
   const router = useRouter();
   const moneyConfig = useCountry();
   const [added, setAdded] = useState(false);
+  const purchasable = !product.previewOnly && product.stock > 0;
   function addToBag(buyNow = false) {
     if (product.variants?.some((variant) => variant.options?.length)) {
       router.push(`/product/${product.slug}`);
@@ -28,9 +29,9 @@ export default function ProductCard({ product }) {
   return <article className="product-card">
     <Link href={`/product/${product.slug}`} className="product-image-link" aria-label={`View ${product.name}`}>
       {product.mainImage ? <img src={product.mainImage} alt={product.name} loading="lazy" /> : <span className="product-image-empty">WE DECOR 4U</span>}
-      <span className={`stock-badge ${product.stock > 0 ? "available" : "unavailable"}`}>{product.stock > 0 ? "Available" : "Out of stock"}</span>
+      <span className={`stock-badge ${purchasable ? "available" : "unavailable"}`}>{product.previewOnly ? "Concept preview" : purchasable ? "Available" : "Out of stock"}</span>
     </Link>
-    <div className="product-card-copy"><div><small>{product.category}</small><h3><Link href={`/product/${product.slug}`}>{product.name}</Link></h3><b>{formatBasePrice(product.priceInrPaise, moneyConfig).text}</b><small>{moneyConfig.configured ? `${moneyConfig.currency} · taxes calculated at checkout` : "INR base price · destination currency not configured"}</small></div>
-      <div className="product-card-buttons"><button className="add-icon" disabled={product.stock < 1} onClick={() => addToBag(false)} aria-label={product.variants?.length ? `Choose options for ${product.name}` : `Add ${product.name} to cart`}>{added ? "✓" : product.variants?.length ? "↗" : "+"}</button><button className="quick-buy" disabled={product.stock < 1} onClick={() => addToBag(true)}>{product.variants?.length ? "Options" : "Buy now"}</button></div></div>
+    <div className="product-card-copy"><div><small>{product.category}</small><h3><Link href={`/product/${product.slug}`}>{product.name}</Link></h3><b>{product.previewOnly ? "Pricing to be confirmed" : formatBasePrice(product.priceInrPaise, moneyConfig).text}</b><small>{product.previewOnly ? "Concept listing · not for sale" : moneyConfig.configured ? `${moneyConfig.currency} · taxes calculated at checkout` : "INR base price · destination currency not configured"}</small></div>
+      {!product.previewOnly && <div className="product-card-buttons"><button className="add-icon" disabled={!purchasable} onClick={() => addToBag(false)} aria-label={product.variants?.length ? `Choose options for ${product.name}` : `Add ${product.name} to cart`}>{added ? "✓" : product.variants?.length ? "↗" : "+"}</button><button className="quick-buy" disabled={!purchasable} onClick={() => addToBag(true)}>{product.variants?.length ? "Options" : "Buy now"}</button></div>}</div>
   </article>;
 }

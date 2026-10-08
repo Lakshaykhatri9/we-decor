@@ -12,12 +12,13 @@ export default function ProductCatalog() {
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(false);
   const [moreLoading, setMoreLoading] = useState(false);
+  const [previewMode, setPreviewMode] = useState(false);
   useEffect(() => {
     let active = true;
     fetch(`/api/products?limit=24&page=1${category === "All" ? "" : `&category=${encodeURIComponent(category)}`}`).then(async (response) => {
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || "Catalog is unavailable.");
-      if (active) { setProducts(data.products || []); setCategories(["All", ...(data.categories || [])]); setHasMore(data.hasMore); setPage(1); setState("ready"); }
+      if (active) { setProducts(data.products || []); setCategories(["All", ...(data.categories || [])]); setHasMore(data.hasMore); setPage(1); setPreviewMode(Boolean(data.previewMode)); setState("ready"); }
     }).catch((reason) => { if (active) { setError(reason.message); setState("error"); } });
     return () => { active = false; };
   }, [category]);
@@ -37,6 +38,7 @@ export default function ProductCatalog() {
   function changeCategory(value) { setProducts([]); setError(""); setState("loading"); setCategory(value); }
   return <>
     <div className="catalog-tools"><div><span className="eyebrow">THE COLLECTION</span><h2>Made for living</h2></div><label>Filter by <select value={category} onChange={(event) => changeCategory(event.target.value)}>{categories.map((item) => <option key={item}>{item}</option>)}</select></label></div>
+    {previewMode && <aside className="catalog-preview-banner"><strong>Curated concept collection</strong><span>These are visual previews only. Product details, prices, and availability are not confirmed, and the items cannot be purchased.</span></aside>}
     {state === "loading" && <p className="state-message">Loading the collection…</p>}
     {state === "error" && <div className="state-message state-error"><strong>We couldn’t load the catalog.</strong><p>{error}</p><p>Connect the product database to publish your collection.</p></div>}
     {state === "ready" && products.length === 0 && <div className="empty-catalog"><span className="empty-mark">✳</span><h3>Something considered is on its way.</h3><p>There are no published products in this collection yet. Add products through your database to begin selling.</p></div>}

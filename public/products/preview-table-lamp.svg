@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 900" role="img" aria-labelledby="title desc">
+  <title id="title">Arc table lamp concept illustration</title><desc id="desc">An olive ceramic table lamp with an ivory shade on a warm neutral background.</desc>
+  <defs><linearGradient id="wall" x2="0" y2="1"><stop stop-color="#f2eee5"/><stop offset="1" stop-color="#ddd8ca"/></linearGradient><linearGradient id="shade" x2=".9" y2="1"><stop stop-color="#fffdf6"/><stop offset="1" stop-color="#d7cdb7"/></linearGradient><linearGradient id="base" x2=".8" y2="1"><stop stop-color="#7f8c70"/><stop offset="1" stop-color="#35483d"/></linearGradient><filter id="shadow"><feGaussianBlur stdDeviation="16"/></filter></defs>
+  <rect width="800" height="900" fill="url(#wall)"/><circle cx="640" cy="174" r="118" fill="#e5dfd0"/><ellipse cx="401" cy="746" rx="236" ry="34" fill="#665f50" opacity=".17" filter="url(#shadow)"/>
+  <path d="M108 704h584v22H108z" fill="#8b694c"/><path d="M136 726h18v110h-18zm508 0h18v110h-18z" fill="#72543c"/><path d="M357 672c-18-78 11-109 43-123 34 15 60 47 43 123z" fill="url(#base)"/><path d="M386 549h28v-174h-28z" fill="#586c56"/><path d="M285 365c11-126 70-185 115-185s105 59 116 185z" fill="url(#shade)"/><ellipse cx="400" cy="365" rx="115" ry="20" fill="#d1c5ad"/><path d="M387 180h26v-24h-26z" fill="#937550"/>
+  <text x="400" y="858" text-anchor="middle" fill="#6d705f" font-family="Arial,sans-serif" font-size="18" letter-spacing="5">LIGHTING CONCEPT</text>
+</svg>
