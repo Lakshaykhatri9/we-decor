@@ -156,6 +156,7 @@ h3 { line-height: 1.25; }
 .form-disclaimer a { text-decoration: underline; }
 .form-feedback { margin: 15px 0 0; font-size: .77rem; }
 .form-feedback.success { color: var(--green); }
+.form-feedback.warning { color: #8b5a4f; }
 .form-feedback.error { color: #a43838; }
 .booking-page { padding-block: 75px 100px; }
 .page-intro { max-width: 790px; margin-bottom: 48px; }

@@ -9,17 +9,18 @@ export default function LeadForm({ kind = "contact", submitLabel = "Send enquiry
   async function submit(event) {
     event.preventDefault();
     setState("loading"); setMessage("");
-    const form = new FormData(event.currentTarget);
+    const formElement = event.currentTarget;
+    const form = new FormData(formElement);
     const body = Object.fromEntries(form.entries());
     body.kind = kind;
     try {
       const response = await fetch("/api/leads", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || "Your enquiry could not be submitted.");
-      event.currentTarget.reset();
+      formElement.reset();
       trackEvent("Lead", { content_name: kind });
-      setState("success");
-      setMessage("Thank you. Your enquiry has been recorded and the team can follow up.");
+      setState(data.emailSent ? "success" : "warning");
+      setMessage(data.message || "Your enquiry was submitted.");
     } catch (error) { setState("error"); setMessage(error.message); }
   }
   return <form className="form-card" onSubmit={submit}>

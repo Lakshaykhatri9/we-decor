@@ -16,7 +16,7 @@ export default function BookingForm({ kind = "interior" }) {
       const response = await fetch("/api/bookings", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || "Your booking request could not be submitted.");
-      form.reset(); trackEvent("Lead", { content_name: `${kind}_booking` }); setState("success"); setMessage("Your request has been recorded. The team can follow up to plan the next step.");
+      form.reset(); trackEvent("Lead", { content_name: `${kind}_booking` }); setState(data.emailSent ? "success" : "warning"); setMessage(data.message || "Your request was submitted.");
     } catch (error) { setState("error"); setMessage(error.message); }
   }
   return <form className="form-card" onSubmit={submit}>

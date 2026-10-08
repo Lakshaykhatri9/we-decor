@@ -16,6 +16,7 @@ Open `http://localhost:3000`. Production commands are `npm run build` and `npm s
 ## Configuration needed before checkout or launch
 
 - `MONGODB_URI` — product, booking, lead and order storage. Payment fulfilment uses MongoDB transactions, so use a replica set deployment such as MongoDB Atlas.
+- `RESEND_API_KEY`, `EMAIL_FROM`, `BUSINESS_EMAIL` — send contact, B2B, interior survey and event enquiry emails. `EMAIL_FROM` must use a sender/domain verified with Resend. The API key stays server-side. Form submissions are emailed even if MongoDB is not configured; when MongoDB is available, they are also saved there.
 - `SITE_URL` — canonical public site URL, sitemap and product feed links.
 - `TAX_RATES_JSON` — approved tax percentages by ISO country code. This app does not decide tax rates.
 - `SHIPPING_RATES_JSON` — business-approved base and per-kilogram prices in minor currency units. Include a method for each checkout country. Optional `volumetricDivisor` enables dimensional-weight pricing.

@@ -1,6 +1,7 @@
 import dbConnect from "@/lib/db";
 import Booking from "@/models/Booking";
-import { cleanText, databaseError, isEmail, isPhone, jsonError, readJson } from "@/lib/http";
+import { cleanText, isEmail, isPhone, jsonError, readJson } from "@/lib/http";
+import { sendBusinessNotification } from "@/lib/email";
 
 export const runtime = "nodejs";
 
@@ -24,11 +25,41 @@ export async function POST(request) {
   if ((data.preferredDate && Number.isNaN(data.preferredDate.getTime())) || (data.eventDate && Number.isNaN(data.eventDate.getTime()))) return jsonError("Enter a valid date.");
   if (data.expectedGuests !== undefined && (!Number.isInteger(data.expectedGuests) || data.expectedGuests < 1 || data.expectedGuests > 100000)) return jsonError("Enter a valid guest count.");
   if (body.kind === "event" && (!data.eventType || !data.eventDate || !data.venue)) return jsonError("Event type, date, and venue are required.");
+  let emailSent = false;
+  let emailError;
   try {
-    await dbConnect();
-    const booking = await Booking.create(data);
-    return Response.json({ ok: true, id: String(booking._id) }, { status: 201 });
-  } catch (error) {
-    return databaseError(error);
+    const isEvent = data.kind === "event";
+    await sendBusinessNotification({
+      subject: `[WE DECOR 4U] ${isEvent ? "Event decor" : "Interior consultation"} enquiry from ${name}`,
+      replyTo: email,
+      fields: {
+        "Enquiry type": isEvent ? "Event decor" : "Interior consultation / site survey",
+        Name: name, Email: email, Phone: phone,
+        "Property type": data.propertyType, "Project type": data.projectType,
+        Location: data.location, Budget: data.budget,
+        "Preferred survey date": data.preferredDate?.toISOString(),
+        "Event type": data.eventType, "Event date": data.eventDate?.toISOString(),
+        Venue: data.venue, "Expected guests": data.expectedGuests,
+        Requirements: data.requirements, Message: data.message,
+      },
+    });
+    emailSent = true;
+  } catch (error) { emailError = error; }
+
+  let stored = false;
+  if (process.env.MONGODB_URI) {
+    try {
+      await dbConnect();
+      const booking = await Booking.create(data);
+      stored = Boolean(booking?._id);
+    } catch { console.error("Unable to store a booking enquiry in MongoDB."); }
   }
+  if (!emailSent && !stored) {
+    const message = emailError?.message || "Your booking request could not be delivered or stored. Please try again later.";
+    return jsonError(message, 503);
+  }
+  const message = emailSent
+    ? stored ? "Your request was emailed to the team and saved." : "Your request was emailed to the team; database storage is not configured."
+    : "Your request was saved, but the email notification could not be sent.";
+  return Response.json({ ok: true, emailSent, stored, message }, { status: 201 });
 }
