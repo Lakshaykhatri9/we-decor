@@ -1,7 +1,7 @@
 import dbConnect from "@/lib/db";
 import Product from "@/models/Product";
 import { databaseError } from "@/lib/http";
-import { getStarterCatalog, isLocalCatalogPreview } from "@/lib/starter-catalog";
+import { getStarterCatalog, isConceptCatalogPreview } from "@/lib/starter-catalog";
 
 export const runtime = "nodejs";
 
@@ -11,7 +11,7 @@ export async function GET(request) {
   const category = params.get("category") || "";
   const limit = Math.min(Math.max(Number(params.get("limit")) || 48, 1), 100);
   const page = ids.length ? 1 : Math.min(Math.max(Number(params.get("page")) || 1, 1), 1000);
-  if (isLocalCatalogPreview()) return Response.json(getStarterCatalog({ category, ids, page, limit }));
+  if (isConceptCatalogPreview()) return Response.json(getStarterCatalog({ category, ids, page, limit }));
   try {
     await dbConnect();
     const filter = { active: true };

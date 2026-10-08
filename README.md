@@ -51,4 +51,4 @@ npm run build
 
 The repository starts without secrets so the public pages can be reviewed. Forms return a clear configuration/service error until MongoDB is connected. Checkout stays unavailable until a live product catalog, approved tax/shipping/FX rates and Razorpay credentials are configured.
 
-In local development only, when `MONGODB_URI` is not set, the shop shows a clearly labeled concept collection with non-purchasable vector previews. Those concepts are excluded from production builds and must not be treated as confirmed products, prices, or inventory.
+When `MONGODB_URI` is not set, the shop shows a clearly labeled concept collection with non-purchasable vector previews so the storefront can be reviewed before database setup. These are not confirmed products, prices, or inventory. Once `MONGODB_URI` is configured, the shop reads only published product records from MongoDB.

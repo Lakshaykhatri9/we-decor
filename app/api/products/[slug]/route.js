@@ -1,13 +1,13 @@
 import dbConnect from "@/lib/db";
 import Product from "@/models/Product";
 import { databaseError, jsonError } from "@/lib/http";
-import { getStarterProduct, isLocalCatalogPreview } from "@/lib/starter-catalog";
+import { getStarterProduct, isConceptCatalogPreview } from "@/lib/starter-catalog";
 
 export const runtime = "nodejs";
 
 export async function GET(_request, { params }) {
   const { slug } = await params;
-  if (isLocalCatalogPreview()) {
+  if (isConceptCatalogPreview()) {
     const product = getStarterProduct(slug);
     return product ? Response.json({ product, previewMode: true }) : jsonError("Product not found.", 404);
   }

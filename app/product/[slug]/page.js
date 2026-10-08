@@ -3,13 +3,13 @@ import dbConnect from "@/lib/db";
 import Product from "@/models/Product";
 import ProductDetail from "@/components/ProductDetail";
 import { canonical, productJsonLd } from "@/lib/seo";
-import { getStarterProduct, isLocalCatalogPreview } from "@/lib/starter-catalog";
+import { getStarterProduct, isConceptCatalogPreview } from "@/lib/starter-catalog";
 
 export const runtime = "nodejs";
 export const dynamicParams = true;
 
 async function findProduct(slug) {
-  if (isLocalCatalogPreview()) return getStarterProduct(slug);
+  if (isConceptCatalogPreview()) return getStarterProduct(slug);
   await dbConnect();
   return Product.findOne({ slug, active: true }).lean();
 }
